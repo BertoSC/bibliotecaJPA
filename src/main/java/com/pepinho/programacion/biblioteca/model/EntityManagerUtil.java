@@ -8,17 +8,17 @@ import jakarta.persistence.Persistence;
 
 public class EntityManagerUtil {
     private static final String UNIDAD_PERSISTENCIA = "biblioteca";
-    private final static EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory(UNIDAD_PERSISTENCIA);
+    private EntityManagerFactory ENTITY_MANAGER_FACTORY;
     private static EntityManagerUtil INSTANCE;
     private EntityManager em;
 
-    private EntityManagerUtil(){}
+    private EntityManagerUtil(EntityManagerFactory enf){}
 
-    private EntityManagerUtil getINSTANCE(){
+    public static EntityManagerUtil getINSTANCE(){
         if (INSTANCE==null){
             synchronized (EntityManagerUtil.class){
                 if (INSTANCE==null){
-                    INSTANCE= new EntityManagerUtil();
+                    INSTANCE= new EntityManagerUtil(Persistence.createEntityManagerFactory(UNIDAD_PERSISTENCIA));
 
                 }
             }

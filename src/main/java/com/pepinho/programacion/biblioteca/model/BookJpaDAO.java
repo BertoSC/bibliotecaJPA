@@ -1,6 +1,7 @@
 package com.pepinho.programacion.biblioteca.model;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -18,7 +19,9 @@ public class BookJpaDAO implements DAO<Book>{
 
     @Override
     public List<Book> getAll() {
-        return null;
+        TypedQuery<Book> consulta = em.createQuery("select b from Book b", Book.class);
+        List <Book> libros = consulta.getResultList();
+        return libros;
     }
 
     @Override
@@ -54,11 +57,18 @@ public class BookJpaDAO implements DAO<Book>{
 
     @Override
     public List<Long> getAllIds() {
-        return null;
+        TypedQuery<Long> consulta = em.createQuery("select b.idBook from Book b", Long.class);
+        List <Long> ids = consulta.getResultList();
+        return ids;
+
     }
 
     @Override
     public void updateLOB(Book book, String f) {
+        em.createQuery("UPDATE Book b SET b.lobField = :newValue WHERE b.idBook = :id")
+                .setParameter("newValue", f)
+                .setParameter("id", book.getIdBook())
+                .executeUpdate();
 
     }
 

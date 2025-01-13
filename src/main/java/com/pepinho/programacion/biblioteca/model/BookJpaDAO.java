@@ -65,8 +65,10 @@ public class BookJpaDAO implements DAO<Book>{
 
     @Override
     public void updateLOB(Book book, String f) {
+        book.setPortada(f);
+        byte[] cover = book.getCover();
         em.createQuery("UPDATE Book b SET b.lobField = :newValue WHERE b.idBook = :id")
-                .setParameter("newValue", f)
+                .setParameter("newValue", cover)
                 .setParameter("id", book.getIdBook())
                 .executeUpdate();
 

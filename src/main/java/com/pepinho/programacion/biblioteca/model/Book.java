@@ -5,10 +5,7 @@
  */
 package com.pepinho.programacion.biblioteca.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -17,7 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-
+import java.util.List;
 /**
  * @author pepecalo
  */
@@ -27,15 +24,20 @@ public class Book implements Serializable {
     //    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 13)
     private Long idBook;
     private String isbn;
+    @Column(name = "titulo")
     private String title;
+    @Column(name = "autor")
     private String author;
+    @Column(name = "anho")
     private Short ano;
+    @Column(name = "disponible")
     private Boolean available;
     private byte[] portada;
 
-    private String[] contido;
+    private transient List<Contido> contido;
 
     private static final long serialVersionUID = 1L;
 

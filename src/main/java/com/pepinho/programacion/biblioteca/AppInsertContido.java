@@ -63,7 +63,7 @@ public class AppInsertContido {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Creo el objeto contido
-                Contido contido = new Contido(idBook, linea);
+                Contido contido = new Contido(book, linea);
                 // Lo guardo en la base de datos
                 contidoDAO.save(contido);
                 // Lo recupero de la base de datos

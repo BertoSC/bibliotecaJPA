@@ -65,10 +65,14 @@ public class BookJpaDAO implements DAO<Book>{
 
     @Override
     public void updateLOB(Book book, String f) {
-        em.createQuery("UPDATE Book b SET b.lobField = :newValue WHERE b.idBook = :id")
+        /*em.createQuery("UPDATE Book b SET b.portada = :newValue WHERE b.idBook = :id")
                 .setParameter("newValue", f)
                 .setParameter("id", book.getIdBook())
-                .executeUpdate();
+                .executeUpdate();*/
+        book.setPortada(f);
+        em.getTransaction();
+        em.merge(book);
+        em.getTransaction().commit();
 
     }
 

@@ -65,20 +65,32 @@ public class BookJpaDAO implements DAO<Book>{
 
     @Override
     public void updateLOB(Book book, String f) {
-        em.createQuery("UPDATE Book b SET b.lobField = :newValue WHERE b.idBook = :id")
+        /*em.createQuery("UPDATE Book b SET b.portada = :newValue WHERE b.idBook = :id")
                 .setParameter("newValue", f)
                 .setParameter("id", book.getIdBook())
-                .executeUpdate();
+                .executeUpdate();*/
+        book.setPortada(f);
+        em.getTransaction().begin();
+        em.merge(book);
+        em.getTransaction().commit();
 
     }
 
     @Override
     public void updateLOBById(long id, String f) {
+        Book temp = get(id);
+        temp.setPortada(f);
+        em.getTransaction().begin();
+        em.merge(temp);
+        em.getTransaction().commit();
 
     }
 
     @Override
     public void deleteAll() {
-
+        List <Long> ids = getAllIds();
+        for (Long id: ids){
+            deleteById(id);
+        }
     }
 }

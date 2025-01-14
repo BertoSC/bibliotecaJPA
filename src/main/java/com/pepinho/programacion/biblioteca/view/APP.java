@@ -10,10 +10,10 @@ public class APP {
         public static void main(String[] args) {
            BibliotecaJpaSimpleManager bib = BibliotecaJpaSimpleManager.getInstance("bibliotecaH2");
            EntityManagerFactory enf= bib.getEmFactory();
-            EntityManager en = enf.createEntityManager();
+           EntityManager en = enf.createEntityManager();
 
-            Book b = en.find(Book.class, 1L);
-            System.out.println(b);
+           Book b = en.find(Book.class, 1L);
+           System.out.println(b);
 
         }
     }

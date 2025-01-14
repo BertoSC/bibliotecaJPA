@@ -17,25 +17,25 @@ import java.util.Objects;
 public class Contido {
 
     private Long idContido;
-    private Long idBook;
+    private Book book;
     private String contido;
 
     public Contido() {
     }
 
-    public Contido(Long idBook, String contido) {
-        this.idBook = idBook;
+    public Contido(Book book, String contido) {
+        this.book = book;
         this.contido = contido;
     }
 
-    public Contido(Long idContido, Long idBook) {
+    public Contido(Long idContido, Book book) {
         this.idContido = idContido;
-        this.idBook = idBook;
+        this.book = book;
     }
 
-    public Contido(Long idContido, Long idBook, String contido) {
+    public Contido(Long idContido, Book book, String contido) {
         this.idContido = idContido;
-        this.idBook = idBook;
+        this.book = book;
         this.contido = contido;
     }
 
@@ -48,12 +48,12 @@ public class Contido {
     }
 
 
-    public Long getIdBook() {
-        return idBook;
+    public Book getIdBook() {
+        return book;
     }
 
-    public void setIdBook(Long idBook) {
-        this.idBook = idBook;
+    public void setIdBook(Book book) {
+        this.book = book;
     }
 
     public String getContido() {
@@ -77,6 +77,6 @@ public class Contido {
 
     @Override
     public String toString() {
-        return idContido + " (" + idBook + "): " + contido;
+        return idContido + " (" + book + "): " + contido;
     }
 }
